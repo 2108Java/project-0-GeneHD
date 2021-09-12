@@ -1,6 +1,7 @@
 package com.revature.repo;
 
 import com.revature.models.Account;
+import com.revature.models.Employee;
 import com.revature.models.User;
 
 public class DummyDAO implements BankDAO{
@@ -57,6 +58,18 @@ public class DummyDAO implements BankDAO{
 	public double transferFunds(int from, int to) {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public User authenticate() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Employee loginEmp() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

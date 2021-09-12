@@ -4,6 +4,7 @@ public class User {
 
 	private String username;
 	private String password;
+	private boolean isEmployee;
 	
 	
 	public String getUsername() {
@@ -17,6 +18,12 @@ public class User {
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	public boolean isEmployee() {
+		return isEmployee;
+	}
+	public void setEmployee(boolean isEmployee) {
+		this.isEmployee = isEmployee;
 	}
 	
 	
