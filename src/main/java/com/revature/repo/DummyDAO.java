@@ -1,10 +1,21 @@
 package com.revature.repo;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.revature.models.Account;
 import com.revature.models.Employee;
 import com.revature.models.User;
 
 public class DummyDAO implements BankDAO{
+
+	public int id;
+	public String owner;
+	public String accountType;
+	public float accountBalance;
+	
+	List<Account> accounts = new ArrayList(); 
+	
 
 	@Override
 	public User userLogin() {
@@ -13,7 +24,13 @@ public class DummyDAO implements BankDAO{
 	}
 
 	@Override
-	public Account[] selectAccounts() {
+	public boolean authenticate() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public List<Account> getAccounts() {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -25,15 +42,18 @@ public class DummyDAO implements BankDAO{
 	}
 
 	@Override
-	public Account viewAllAccounts() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Account> viewAllAccounts() {
+	
+		return accounts;
 	}
 
 	@Override
 	public Account viewAccount(int account_id) {
-		// TODO Auto-generated method stub
-		return null;
+		Account account = new Account();
+		
+			for(int select = 0; select > accounts.size(); select++) {
+			}
+		return account;
 	}
 
 	@Override
@@ -59,17 +79,11 @@ public class DummyDAO implements BankDAO{
 		// TODO Auto-generated method stub
 		return 0;
 	}
-
-	@Override
-	public User authenticate() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Employee loginEmp() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+	
 }
+	
+	
+	
+
+	
+	

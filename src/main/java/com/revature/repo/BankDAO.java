@@ -1,22 +1,22 @@
 package com.revature.repo;
 
+import java.util.List;
+
 import com.revature.models.Account;
 import com.revature.models.Employee;
 import com.revature.models.User;
 
 public interface BankDAO {
 
-	User userLogin();
+	public User userLogin();
 	
-	User authenticate();
+	boolean authenticate();
 	
-	Employee loginEmp();
+	public List<Account> getAccounts();
 	
-	Account[] selectAccounts();
+	public Account makeAccount();
 	
-	Account makeAccount();
-	
-	Account viewAllAccounts();
+	public List<Account> viewAllAccounts();
 	
 	Account viewAccount(int account_id);
 

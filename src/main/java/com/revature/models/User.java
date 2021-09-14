@@ -6,6 +6,21 @@ public class User {
 	private String password;
 	private boolean isEmployee;
 	
+	public User(String name, boolean isEmployee) {
+		this.username = name;
+		this.isEmployee = isEmployee;
+	}
+	
+	public User(String name, String pass, boolean isEmployee) {
+		this.username = name;
+		this.password = pass;
+		this.isEmployee = isEmployee;
+	}
+	
+	public User() {
+		
+	}
+	
 	
 	public String getUsername() {
 		return username;

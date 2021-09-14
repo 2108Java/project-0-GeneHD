@@ -3,8 +3,21 @@ package com.revature.models;
 import java.util.List;
 
 public class Customer extends User {
+	
+	
+	
 	private String name;
 	private List<Account> accounts;
+	
+	public Customer(String name) {
+		this.name = name;
+	}
+	
+	public Customer(String name, List<Account> accounts) {
+		this.name = name;
+		this.accounts = accounts;
+	}
+	
 	
 	public String getName() {
 		return name;

@@ -2,6 +2,7 @@ package com.revature.models;
 
 public class Employee extends User {
 
+	
 	private boolean isAdmin;
 
 	 
