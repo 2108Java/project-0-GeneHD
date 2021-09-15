@@ -12,9 +12,9 @@ public interface BankDAO {
 	
 	boolean authenticate();
 	
-	public List<Account> getAccounts();
+	public List<Account> getAccounts(int ... id);
 	
-	public Account makeAccount();
+	public Account addAccount();
 	
 	public List<Account> viewAllAccounts();
 	

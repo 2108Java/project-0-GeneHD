@@ -5,12 +5,12 @@ import java.util.List;
 public class Customer extends User {
 	
 	
-	
+	public boolean isEmployee = false;
 	private String name;
 	private List<Account> accounts;
 	
-	public Customer(String name) {
-		this.name = name;
+	public Customer(String cust_name, String name) {
+		this.name = cust_name;
 	}
 	
 	public Customer(String name, List<Account> accounts) {
