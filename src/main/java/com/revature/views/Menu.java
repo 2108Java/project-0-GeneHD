@@ -4,5 +4,5 @@ public interface Menu {
 
 	public void display();
 	
-	public void prettyAccountDisplay();
+	public void prettyDisplay();
 }

@@ -12,7 +12,7 @@ public interface BankDAO {
 	
 	boolean authenticate();
 	
-	public List<Account> getAccounts(int ... id);
+	public List<Account> getAccounts(String username);
 	
 	public Account addAccount();
 	

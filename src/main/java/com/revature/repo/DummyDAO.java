@@ -22,18 +22,26 @@ public class DummyDAO implements BankDAO{
 
 	@Override
 	public User userLogin() {
-		// TODO Auto-generated method stub
-		return null;
+		User person = new User();
+		String name = person.getUsername();
+		String pass = person.getPassword();
+		
+//		for () {
+//			
+//		}
+			
+		return person;
 	}
 
 	@Override
 	public boolean authenticate() {
-		// TODO Auto-generated method stub
-		return false;
+		boolean success = false;
+		
+		return success;
 	}
 
 	@Override
-	public List<Account> getAccounts(int ... id) {
+	public List<Account> getAccounts(String username) {
 		// TODO Auto-generated method stub
 		return null;
 	}
