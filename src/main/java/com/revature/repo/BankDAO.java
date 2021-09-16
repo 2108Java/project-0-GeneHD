@@ -3,33 +3,24 @@ package com.revature.repo;
 import java.util.List;
 
 import com.revature.models.Account;
-import com.revature.models.Employee;
-import com.revature.models.User;
 
 public interface BankDAO {
 
-	public User userLogin();
+	// Create
+	public Account insertAccount();
 	
-	boolean authenticate();
+	// Read
+	public Account selectAccount();
 	
-	public List<Account> getAccounts(String username);
+	public List<Account> selectAccounts(String owner);
 	
-	public Account addAccount();
+	public List<Account> selectAllAccounts();
 	
-	public List<Account> viewAllAccounts();
+	// Update
+	public Account updateAccount(String owner);
 	
-	Account viewAccount(int account_id);
-
-	double viewBalance(int account_id);
-	
-	double deposit(int account_id);
-	
-	double withdrawal(int account_id);
-	
-	double transferFunds(int from, int to);
-	
-	
-	
+	// Delete
+	public void deleteAccount(String owner);
 	
 	
 }
