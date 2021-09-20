@@ -1,13 +1,10 @@
 package com.revature.views;
 
 import java.util.Scanner;
+ 
 
 public class EmployeeMenu implements Menu {
 
-	@Override
-	public void prettyDisplay() {
-		// TODO Auto-generated method stub
-	}
 	
 	@Override
 	public void display() {

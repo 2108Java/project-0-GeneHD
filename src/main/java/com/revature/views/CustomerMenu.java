@@ -4,11 +4,7 @@ import java.util.Scanner;
 
 public class CustomerMenu implements Menu {
 
-	@Override
-	public void prettyDisplay() {
-		// TODO Auto-generated method stub
-		
-	}
+	
 	
 	@Override
 	public void display() {

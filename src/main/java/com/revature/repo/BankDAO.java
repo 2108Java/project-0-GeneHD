@@ -7,12 +7,12 @@ import com.revature.models.Account;
 public interface BankDAO {
 
 	// Create
-	public Account insertAccount();
+	public boolean insertAccount(Account newAccount);
 	
 	// Read
 	public Account selectAccount();
 	
-	public List<Account> selectAccounts(String owner);
+	public List<Account> selectAccounts(int id);
 	
 	public List<Account> selectAllAccounts();
 	
