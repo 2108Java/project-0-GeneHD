@@ -10,7 +10,7 @@ public interface BankDAO {
 	public boolean insertAccount(Account newAccount);
 	
 	// Read
-	public Account selectAccount();
+	public Account selectAccount(int id);
 	
 	public List<Account> selectAccounts(int id);
 	
@@ -22,5 +22,7 @@ public interface BankDAO {
 	// Delete
 	public void deleteAccount(String owner);
 	
+	public boolean createAccount(String owner);
 	
+	public boolean approveAccount(String owner);
 }

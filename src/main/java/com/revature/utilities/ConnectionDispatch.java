@@ -6,21 +6,21 @@ import java.sql.SQLException;
 
 public class ConnectionDispatch {
 
-	public static final String URL = "";
-	public static final String USERNAME = "";
-	public static final String PASSWORD = "";
+	
+	private static final String URL = "jdbc:postgresql://localhost/postgres";
+	private static final String USERNAME = "postgres";
+	private static final String PASSWORD = "t4500gtt";
 	
 	
 	public ConnectionDispatch() {
 		 
 	}
-	public void getConnetion() {
+	public Connection getConnection() throws SQLException{
+		
+		Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
 	
-		try {
-	Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-	} catch(SQLException e) { 
-		e.printStackTrace();
-	}
+		return conn;
+	
 	}
 	
 }

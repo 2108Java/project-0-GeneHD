@@ -3,17 +3,23 @@ package com.revature.repo;
 import java.util.List;
 
 import com.revature.models.Account;
+import com.revature.utilities.ConnectionDispatch;
 
 public class AccountDao implements BankDAO {
 
 	@Override
 	public boolean insertAccount(Account newAccount) {
-		// TODO Auto-generated method stub
-		return false;
+		
+		
+		boolean goodOps = false;
+		
+		
+
+		return goodOps;
 	}
 
 	@Override
-	public Account selectAccount() {
+	public Account selectAccount(int id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -42,9 +48,16 @@ public class AccountDao implements BankDAO {
 		
 	}
 
-	public void createAccount(String owner) {
+	@Override
+	public boolean createAccount(String owner) {
 		// TODO Auto-generated method stub
-		
+		return false;
+	}
+
+	@Override
+	public boolean approveAccount(String owner) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }

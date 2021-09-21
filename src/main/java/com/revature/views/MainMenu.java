@@ -1,13 +1,26 @@
 package com.revature.views;
 
+import java.sql.SQLException;
 import java.util.Scanner;
 
+import com.revature.models.User;
 import com.revature.service.Auditor;
-import com.revature.service.BankService;
+import com.revature.service.Authenticator;
 import com.revature.service.BankServiceImp;
 
 
 public class MainMenu implements Menu {
+	
+private Authenticator audit;
+private BankServiceImp service;
+
+public MainMenu() {
+		
+	}
+	public MainMenu(Authenticator audit) {
+		this.audit = audit;
+		
+	}
 
 	Scanner sc = new Scanner(System.in);
 	
@@ -15,37 +28,47 @@ public class MainMenu implements Menu {
 		System.out.println("Welcome to Eggman Bank!");
 	}
 	
-	public void loginMenu() {
-
+	public void display() {
 		
+		greeting();
 		
-		boolean run = true;
+		loginMenu(sc);
 		
-		while (run) {
-			System.out.println("Please enter your username:");
-			System.out.println("or type 'register' to register for a new account.");
-			
-			String username = sc.nextLine(); 
-			if(username == "register") {
-				registerMenu();
-				
-			}
-			System.out.println("Now enter your password for " + username + ":" );
-		
-			String passAtt = sc.nextLine();
-		
-		Auditor audit = new Auditor();
-		
-			audit.authenticate(username, passAtt);
-		
-			
-		}
-			
-		
-		
+		sc.close();
 	}
 	
-	public void registerMenu() {
+	public User loginMenu(Scanner sc) {
+
+			
+		System.out.println("Please enter your username:");
+		System.out.println("or type '0' to register for a new account.");
+			
+		String username = sc.nextLine(); 
+		
+		System.out.println("Now enter your password for " + username + ":" );
+		String password = sc.nextLine();
+
+		boolean audited = audit.authenticate(username, password);
+		User u = null;
+		
+		if(audited) {
+			u = audit.getUser(username);
+			System.out.println("welcome " + username + ".");
+			
+		}else{
+			
+			System.out.println("You have not entered the right password.");
+			System.out.println("Try again!");
+			
+		}
+
+			
+		
+		return u;
+	}
+	
+	public User registerMenu(Scanner sc) {
+		User u = null;
 		System.out.println("Welcome to the register menu!");
 		System.out.println("Please enter a username, new customer: ");
 		
@@ -68,28 +91,20 @@ public class MainMenu implements Menu {
 		Auditor audit = new Auditor();
 		BankServiceImp service = new BankServiceImp();
 		
-			if(audit.authenticate(newUsername)) {
-				service.makeUser(newUsername, newPassword, newName);
-				service.makeAccount(newName, newBalance);
+			try {
+				if(audit.authenticate(newUsername)) {
+					service.makeUser(newUsername, newPassword, newName);
+					service.makeAccount(newName, newBalance);
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
-		
-	}
-		@Override
-	public void display() {
-		Scanner sc = new Scanner(System.in);
-		 
-		greeting();
-		
-		loginMenu();
-		
-		registerMenu();
-		
-		sc.close();
-	}
+			
+		return u;
+	}	
  
-	public MainMenu() {
-		
-	}
+	
 
 	
 	
