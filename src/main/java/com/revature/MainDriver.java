@@ -17,7 +17,7 @@ public class MainDriver {
 		
 		Authenticator audit = new Auditor(aDao,uDao);
 		
-	System.out.println(audit.getUser("scratch"));
+//	System.out.println(audit.getUser("scratch"));
 //		BankService service = new BankServiceImp();
 //		System.out.println(uDao.selectUserByUserName("eggman1"));		
 		

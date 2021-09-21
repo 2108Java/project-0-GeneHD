@@ -1,10 +1,10 @@
 package com.revature.views;
 
-import java.sql.SQLException;
+
 import java.util.Scanner;
 
 import com.revature.models.User;
-import com.revature.service.Auditor;
+
 import com.revature.service.Authenticator;
 import com.revature.service.BankServiceImp;
 
@@ -12,7 +12,7 @@ import com.revature.service.BankServiceImp;
 public class MainMenu implements Menu {
 	
 private Authenticator audit;
-private BankServiceImp service;
+//private BankServiceImp service;
 
 public MainMenu() {
 		
@@ -41,9 +41,9 @@ public MainMenu() {
 
 			
 		System.out.println("Please enter your username:");
-		System.out.println("or type '0' to register for a new account.");
-			
+		
 		String username = sc.nextLine(); 
+	
 		
 		System.out.println("Now enter your password for " + username + ":" );
 		String password = sc.nextLine();
@@ -53,13 +53,22 @@ public MainMenu() {
 		
 		if(audited) {
 			u = audit.getUser(username);
-			System.out.println("welcome " + username + ".");
+			
+				System.out.println("welcome " + username + ".");
 			
 		}else{
 			
 			System.out.println("You have not entered the right password.");
-			System.out.println("Try again!");
+			System.out.println("Try again or press '0' to register!");
+			String zero = sc.nextLine();
 			
+			switch (zero) {
+			case "0": 
+				registerMenu(sc); 
+				break;
+			default: 
+				loginMenu(sc);
+			}
 		}
 
 			
@@ -67,41 +76,40 @@ public MainMenu() {
 		return u;
 	}
 	
-	public User registerMenu(Scanner sc) {
-		User u = null;
+	public boolean registerMenu(Scanner sc) {
+		boolean goodOps = false;
 		System.out.println("Welcome to the register menu!");
 		System.out.println("Please enter a username, new customer: ");
 		
-		String newUsername = sc.nextLine();
+		String username = sc.nextLine();
 		
 		
 		System.out.println("Ok. now enter your new password: ");
 		 
-		String newPassword = sc.nextLine();
+		String password = sc.nextLine();
 		
 		System.out.println("Please enter your name:");
 		
-		String newName = sc.nextLine();
+		String fullName = sc.nextLine();
 		
 		System.out.println("Now how much are you depositing?");
 		
 		String balance = sc.nextLine();
 		double newBalance = Double.parseDouble(balance);
 		
-		Auditor audit = new Auditor();
-		BankServiceImp service = new BankServiceImp();
+		boolean audited = audit.authenticate(username, password, fullName);
+		User u = null;
+//		BankServiceImp service = new BankServiceImp();
 		
-			try {
-				if(audit.authenticate(newUsername)) {
-					service.makeUser(newUsername, newPassword, newName);
-					service.makeAccount(newName, newBalance);
+				if(audited) {
+					goodOps = audit.makeUser(username, password, fullName);
+					System.out.println("Username " + username + "");
+					goodOps = true;
+					
+					//service.makeAccount(newName, newBalance);
 				}
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
 			
-		return u;
+		return goodOps;
 	}	
  
 	

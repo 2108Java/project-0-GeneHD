@@ -1,6 +1,6 @@
 package com.revature.service;
 
-import java.sql.SQLException;
+
 
 
 import com.revature.models.User;
@@ -36,32 +36,34 @@ public class Auditor implements Authenticator {
 			return goodOps;
 	}
 
-	public boolean authenticate(String username) throws SQLException {
+	public boolean authenticate(String username, String password, String fullname) {
 		boolean goodOps = false;
-		User person = getUser(username);
 		
-				
-				if(username != null && !person.getUsername().equals(username)) {
-				
-				
-					userDao.createUser(username);
-					userDao.updateUser(username);
-				
+		goodOps =  makeUser(username, password, fullname);
+		
+				if(username != null) {
+								
+					System.out.println("Getting you a the username " + username + ".");
+					System.out.println("Success!");
 					goodOps = true;
 				
-					
-
 				}else {
 				
-					System.out.println("Someone else has the username:" + username);
+					System.out.println("Someone else has the username:" + username + ".");
 				
 					System.out.println("Try another username.");
 					
-
 				}
 				return goodOps;
 		}
+	@Override	
+	public boolean makeUser(String username, String password, String fullname) {
+		boolean goodOps = false;
 		
+		 goodOps = userDao.insertUser(username, password, fullname);
+		
+		return goodOps;
+	}
 	@Override
 	public User getUser(String username) {
 		
