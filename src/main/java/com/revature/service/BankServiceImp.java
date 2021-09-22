@@ -2,42 +2,97 @@ package com.revature.service;
 
 
 
+import java.util.ArrayList;
+import java.util.List;
+
+import com.revature.models.Account;
+import com.revature.models.User;
 import com.revature.repo.AccountDao;
 import com.revature.repo.UserDao;
 
 public class BankServiceImp {
 	
+	List<Account> accounts = null;
 	
 	private AccountDao aDao;
+	private UserDao uDao;
 	
 	public BankServiceImp() {
 		
+		aDao = new AccountDao();
 	}
 	
 	public BankServiceImp(UserDao uDao, AccountDao aDao) {
 		this.aDao = aDao;
+		this.uDao = uDao;
 	}
 		
-	public void makeAccount(String newName, double newBalance) {
-		aDao.createAccount(newName);
+	public BankServiceImp(AccountDao aDao2) {
+		this.aDao = aDao2;
+	}
+
+	public boolean makeAccount(String newName, String accountType, double newBalance) {
+		AccountDao a = new AccountDao();
 		
+		boolean goodOps = a.insertAccount(newName, accountType, newBalance);
+		
+		
+		return goodOps;
 	}
 	
-	public void deposit(String owner, double balance) {
+	public boolean deposit(String owner, double balance, double deposit) {
+		AccountDao a = new AccountDao();
 		
+		balance += deposit;
+		
+		boolean goodOps = a.updateAccount(owner, balance);
+		System.out.println("Your balance is now: $" + balance);
+		
+		return goodOps;
 	}
 	
-	public void withdrawal(String owner, double balance) {
+	public boolean withdrawal(String owner, double balance, double withdrawal) {
+		AccountDao a = new AccountDao();
 		
+		balance -= withdrawal;
+		
+		boolean goodOps = a.updateAccount(owner, balance);
+		System.out.println("Your balance is now: $" + balance);
+		
+		return goodOps;
 	}
 	
-	public void makeTransfer(String from, String to, double amount) {
+	public boolean makeTransfer(String from, String to, double amount) {
+		AccountDao a = new AccountDao();
+		boolean goodOps = false;
+	//	goodOps = a.RequestTransfer(from, to ,amount);
 		
+		
+		
+		
+		
+		return goodOps;
+				
+				
 	}
 	
 	public boolean approveTransfer() {
+		boolean goodOps = false;
 		
-		return false;
+		
+		return goodOps;
+	}
+
+	public List<Account> viewAllAccounts() {
+		return aDao.selectAllAccounts();
+	}
+	
+	public List<Account> viewAccounts(User user) {
+		AccountDao a = new AccountDao();
+		List<Account> list = a.selectAccounts(user);
+		
+		
+		return list;
 	}
 }
 

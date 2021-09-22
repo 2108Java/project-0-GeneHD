@@ -5,7 +5,7 @@ public class Account {
 	private int id;
 	private String owner;
 	private String type;
-	private float balance;
+	private double balance;
 	
 	public Account() {
 		this.balance = 0.0f;
@@ -23,7 +23,7 @@ public class Account {
 		this.owner = owner;
 	}
 	
-	public Account(int id, String owner, String type, float balance) {
+	public Account(int id, String owner, String type, double balance) {
 		this.id = id;
 		this.owner = owner;
 		this.type = type;
@@ -36,11 +36,11 @@ public class Account {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public float getBalance() {
+	public double getBalance() {
 		return balance;
 	}
-	public void setBalance(float balance) {
-		this.balance = balance;
+	public void setBalance(double balance) {
+		this.balance = balance ;
 	}
 	
 	public String getType() {
@@ -58,5 +58,10 @@ public class Account {
 
 	public void setOwner(String owner) {
 		this.owner = owner;
+	}
+	
+	@Override
+	public String toString() { return "";
+		
 	}
 }

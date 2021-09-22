@@ -16,7 +16,7 @@ public class UserDao {
 	
 	//Create a User
 	public boolean insertUser(String username, String password, String fullname)  {
-		User u = new User();
+		
 		boolean goodOps = false;
 		PreparedStatement ps;
 		String sql = "INSERT INTO user_table(username, user_password, user_fullname, emp_account, is_admin) VALUES (?, ?, ?, ?, ?)";

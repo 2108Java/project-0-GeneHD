@@ -3,6 +3,7 @@ package com.revature.repo;
 import java.util.List;
 
 import com.revature.models.Account;
+import com.revature.models.User;
 
 public interface BankDAO {
 
@@ -12,7 +13,7 @@ public interface BankDAO {
 	// Read
 	public Account selectAccount(int id);
 	
-	public List<Account> selectAccounts(int id);
+	public List<Account> selectAccounts(User user);
 	
 	public List<Account> selectAllAccounts();
 	
@@ -22,7 +23,9 @@ public interface BankDAO {
 	// Delete
 	public void deleteAccount(String owner);
 	
-	public boolean createAccount(String owner);
+	public boolean insertAccount(String owner, String accountType, double newBalance);
 	
 	public boolean approveAccount(String owner);
+	
+	public double acquireBalance(int id);
 }

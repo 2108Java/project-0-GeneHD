@@ -46,7 +46,7 @@ public class Customer extends User {
 	public String toString() {
 		return "Customer no. " + person.getId() + ": username: "+ username + 
 				" Hello " + person.getRealname() + ". \n here are your accounts: " 
-				+ accountBank.selectAccounts(person.getId()) + ".";
+				+ accountBank.selectAccounts(person) + ".";
 		
 	}
 	

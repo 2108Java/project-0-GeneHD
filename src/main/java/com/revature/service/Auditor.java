@@ -6,10 +6,14 @@ package com.revature.service;
 import com.revature.models.User;
 import com.revature.repo.AccountDao;
 import com.revature.repo.UserDao;
+import com.revature.views.CustomerMenu;
+import com.revature.views.EmployeeMenu;
 
 public class Auditor implements Authenticator {
 	private UserDao userDao;
 	private AccountDao accDao;
+	CustomerMenu cMenu;
+	EmployeeMenu eMenu;
 
 	public Auditor(AccountDao aDao, UserDao uDao) {
 		this.accDao = aDao;
@@ -46,7 +50,9 @@ public class Auditor implements Authenticator {
 					System.out.println("Getting you a the username " + username + ".");
 					System.out.println("Success!");
 					goodOps = true;
-				
+					
+					cMenu = new CustomerMenu();
+					cMenu.display();
 				}else {
 				
 					System.out.println("Someone else has the username:" + username + ".");

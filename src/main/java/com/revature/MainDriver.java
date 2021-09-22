@@ -15,11 +15,7 @@ public class MainDriver {
 		
 		AccountDao aDao = new AccountDao();
 		
-		Authenticator audit = new Auditor(aDao,uDao);
-		
-//	System.out.println(audit.getUser("scratch"));
-//		BankService service = new BankServiceImp();
-//		System.out.println(uDao.selectUserByUserName("eggman1"));		
+		Authenticator audit = new Auditor(aDao,uDao);	
 		
 		MainMenu menu = new MainMenu(audit);
 

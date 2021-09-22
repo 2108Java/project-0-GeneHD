@@ -12,7 +12,10 @@ import com.revature.service.BankServiceImp;
 public class MainMenu implements Menu {
 	
 private Authenticator audit;
-//private BankServiceImp service;
+private BankServiceImp service;
+private CustomerMenu cMenu;
+private EmployeeMenu eMenu;
+
 
 public MainMenu() {
 		
@@ -55,7 +58,16 @@ public MainMenu() {
 			u = audit.getUser(username);
 			
 				System.out.println("welcome " + username + ".");
+			boolean emp = u.isEmployee();
 			
+			if(emp) {
+				eMenu = new EmployeeMenu(u);
+				eMenu.display();
+			}else {
+				cMenu = new CustomerMenu(u);
+				cMenu.display();
+			}
+				
 		}else{
 			
 			System.out.println("You have not entered the right password.");
@@ -90,21 +102,15 @@ public MainMenu() {
 		
 		System.out.println("Please enter your name:");
 		
-		String fullName = sc.nextLine();
+		String fullName = sc.nextLine();	
 		
-		System.out.println("Now how much are you depositing?");
-		
-		String balance = sc.nextLine();
-		double newBalance = Double.parseDouble(balance);
 		
 		boolean audited = audit.authenticate(username, password, fullName);
-		User u = null;
-//		BankServiceImp service = new BankServiceImp();
+
 		
 				if(audited) {
 					goodOps = audit.makeUser(username, password, fullName);
-					System.out.println("Username " + username + "");
-					goodOps = true;
+					
 					
 					//service.makeAccount(newName, newBalance);
 				}
