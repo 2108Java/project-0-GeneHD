@@ -3,6 +3,9 @@ package com.revature.service;
 
 
 
+import java.util.List;
+
+import com.revature.models.Account;
 import com.revature.models.User;
 import com.revature.repo.AccountDao;
 import com.revature.repo.UserDao;
@@ -27,6 +30,7 @@ public class Auditor implements Authenticator {
 	public boolean authenticate(String username, String password) {
 		
 		User person = getUser(username);
+		List<Account> ac = getAccounts(username);
 		boolean goodOps = false;
 		
 		if (person != null) {
@@ -34,6 +38,11 @@ public class Auditor implements Authenticator {
 			if(person.getPassword() != null && person.getPassword().equals(password)) {
 			
 				goodOps = true;
+				if(ac != null) {
+					for(Account a: ac) {
+						System.out.println("Here are your accounts"+a.toString());
+					}
+				}
 			} 
 		}
 			
@@ -76,6 +85,13 @@ public class Auditor implements Authenticator {
 		User u = userDao.selectUserByUserName(username);
 		
 		return u;
+	}
+	
+	public List<Account> getAccounts(String username) {
+		
+		List<Account> ac = accDao.selectAccountByUsername(username);
+		
+		return ac;
 	}
 
 }

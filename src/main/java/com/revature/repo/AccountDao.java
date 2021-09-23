@@ -67,7 +67,7 @@ public class AccountDao implements BankDAO {
 	}
 
 	@Override
-	public List<Account> selectAccounts(User user) {
+	public List<Account> selectAccounts(int id) {
 		List<Account> accounts = new ArrayList<>();
 		
 		String sql = "SELECT * FROM accounts_table WHERE fkey_owner_id = ?";
@@ -80,7 +80,7 @@ public class AccountDao implements BankDAO {
 			
 			ps = conn.prepareStatement(sql);
 			
-			ps.setInt(1, user.getId());
+			ps.setInt(1, id);
 			
 			ResultSet rs = ps.executeQuery();
 			
@@ -210,26 +210,63 @@ public class AccountDao implements BankDAO {
 		return 0;
 	}
 
-	public boolean updateAccount(String owner, double balance) {
+	public boolean updateAccount(int id, double balance) {
 		boolean goodOps = false;
 		
 		PreparedStatement ps;
-		String sql = "UPDATE balance FROM accounts WHERE account_id = ? ";
+		String sql = "UPDATE accounts_table SET balance = ? WHERE account_id = ? ";
 		
 		try {
 			Connection conn = dispatch.getConnection();
 			
 			ps = conn.prepareStatement(sql);
 			
-			ps.setString(1, owner);
+			ps.setDouble(1, balance);
+			ps.setInt(2, id);
 			
-			ps.execute();
+			ps.execute(); 
+			
+			
+			
+			
 			
 		} catch(SQLException e) {
 			e.printStackTrace();
 		}
 		
 		return goodOps;
+	}
+
+	@Override
+	public List<Account> selectAccountByUsername(String owner) {
+		List<Account> accounts = new ArrayList<>();
+		PreparedStatement ps; 
+		String sql = "SELECT * FROM accounts_table WHERE ";
+		try {
+				
+			Connection conn = dispatch.getConnection();
+			
+			ps = conn.prepareStatement(sql);	
+			
+			ResultSet rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				accounts.add(
+						new Account(
+								(rs.getInt("account_id")),
+								(rs.getString("account_owner_name")),
+								(rs.getString("account_type")),
+								(rs.getDouble("balance"))
+						
+						));
+			}
+		}catch (SQLException e) {
+			
+		}
+		
+		
+		return accounts;
+		
 	}
 
 }

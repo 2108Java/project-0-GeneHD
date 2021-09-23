@@ -1,18 +1,21 @@
 package com.revature.views;
 
 
+import java.util.List;
 import java.util.Scanner;
 
+import com.revature.models.Account;
 import com.revature.models.User;
 
 import com.revature.service.Authenticator;
+import com.revature.service.BankService;
 import com.revature.service.BankServiceImp;
 
 
 public class MainMenu implements Menu {
 	
 private Authenticator audit;
-private BankServiceImp service;
+private BankService service;
 private CustomerMenu cMenu;
 private EmployeeMenu eMenu;
 
@@ -53,11 +56,13 @@ public MainMenu() {
 
 		boolean audited = audit.authenticate(username, password);
 		User u = null;
+		List<Account> ac = null;
 		
 		if(audited) {
 			u = audit.getUser(username);
 			
-				System.out.println("welcome " + username + ".");
+			System.out.println("welcome " + username + ".");
+			
 			boolean emp = u.isEmployee();
 			
 			if(emp) {

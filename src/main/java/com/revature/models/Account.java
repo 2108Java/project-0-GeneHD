@@ -61,7 +61,9 @@ public class Account {
 	}
 	
 	@Override
-	public String toString() { return "";
+	public String toString() { 
+		return "[Account # "+ id + " holder: " + owner + " type of Account: " + type +
+								" Balance: $" + balance + "] \n";
 		
 	}
 }

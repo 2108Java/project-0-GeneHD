@@ -16,7 +16,7 @@ import com.revature.service.Auditor;
 public class CustomerMenu implements Menu {
 
 	User user = new User();
-	private AccountDao aDao;
+	private AccountDao aDao = new AccountDao();
 
 	public CustomerMenu() {
 		
@@ -80,36 +80,74 @@ public class CustomerMenu implements Menu {
 			
 			String initDeposit = sc.nextLine();
 			double startDeposit = Double.parseDouble(initDeposit);
-			service.makeAccount(username, accountType, startDeposit);
-			
+			boolean accountmade = service.makeAccount(username, accountType, startDeposit);
+			if(accountmade) {
+				System.out.println("The account has been made pending one of our employee's approval");
+			}else {
+				System.out.println("Sorry no account has been made.");
+			}
 			break;
 			
 		case "2":
 			
-			service.viewAccounts(user);
+			List<Account> accounts = service.viewAccounts(user.getId());
 			
+			System.out.println("here are your accounts: " + accounts.toString());
 			break;
 			
 		case "3":
+			List<Account> accs = service.viewAccounts(user.getId());
+			System.out.println("here are your accounts: " + accs.toString());
 			
-			System.out.println("Your balance is now: ");
+			System.out.println("Which account would you like to deposit from");
+			String input = sc.nextLine();
+			int choice = Integer.parseInt(input) - 1;
+			
+			double balance = 0.0;
+			
+			if (choice > -1 && choice < accs.size()) {
+				 balance = accs.get(choice).getBalance();
+			}else {
+				System.out.println("There is a problem with the choice");
+			}
+			
+			System.out.println("Your balance is now: " + balance);
 			System.out.println("How much would you like to deposit?");
+			
 			String pendDeposit = sc.nextLine();
 			double deposit = Double.parseDouble(pendDeposit);
 			
+			service.deposit(accs.get(choice).getId(), balance, deposit);
 			
-		//	service.deposit(user.getUsername(), balance, deposit);
 			
 			
 			break;
 		case "4":
-			System.out.println("Your balance is now: ");
-			System.out.println("How much would you like to deposit?");
+			List<Account> ac = service.viewAccounts(user.getId());
+			System.out.println("here are your accounts: " + ac.toString());
+			
+			System.out.println("Which account would you like to deposit from");
+			String put = sc.nextLine();
+			int d = Integer.parseInt(put) - 1;
+			
+			double bal = 0.0;
+			 
+			if (d > - 1 && d < ac.size()) {
+				 bal = ac.get(d).getBalance();
+			}else {
+				System.out.println("There is a problem with the choice");
+			}
+			
+			System.out.println("Your balance is now: " + bal);
+			System.out.println("How much would you like to withdraw?");
 			
 			String pendWithdrawal = sc.nextLine();
 			double withdrawal = Double.parseDouble(pendWithdrawal);
 			
-	//	service.withdrawal(option, 0);
+			service.withdrawal(d, bal, withdrawal);
+			
+			
+	
 			break;
 		case "5":
 			

@@ -40,23 +40,23 @@ public class BankServiceImp {
 		return goodOps;
 	}
 	
-	public boolean deposit(String owner, double balance, double deposit) {
+	public boolean deposit(int id, double balance, double deposit) {
 		AccountDao a = new AccountDao();
 		
 		balance += deposit;
 		
-		boolean goodOps = a.updateAccount(owner, balance);
+		boolean goodOps = a.updateAccount(id, balance);
 		System.out.println("Your balance is now: $" + balance);
 		
 		return goodOps;
 	}
 	
-	public boolean withdrawal(String owner, double balance, double withdrawal) {
+	public boolean withdrawal(int id, double balance, double withdrawal) {
 		AccountDao a = new AccountDao();
 		
 		balance -= withdrawal;
 		
-		boolean goodOps = a.updateAccount(owner, balance);
+		boolean goodOps = a.updateAccount(id, balance);
 		System.out.println("Your balance is now: $" + balance);
 		
 		return goodOps;
@@ -87,12 +87,14 @@ public class BankServiceImp {
 		return aDao.selectAllAccounts();
 	}
 	
-	public List<Account> viewAccounts(User user) {
+	public List<Account> viewAccounts(int id) {
 		AccountDao a = new AccountDao();
-		List<Account> list = a.selectAccounts(user);
-		
+		List<Account> list = a.selectAccounts(id);
+	
 		
 		return list;
 	}
+	
+	
 }
 

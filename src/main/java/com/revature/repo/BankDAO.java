@@ -13,9 +13,11 @@ public interface BankDAO {
 	// Read
 	public Account selectAccount(int id);
 	
-	public List<Account> selectAccounts(User user);
+	public List<Account> selectAccounts(int id);
 	
 	public List<Account> selectAllAccounts();
+	
+	public List<Account> selectAccountByUsername(String owner);
 	
 	// Update
 	public Account updateAccount(String owner);
