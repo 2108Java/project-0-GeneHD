@@ -5,6 +5,8 @@ package com.revature.views;
 import java.util.Scanner;
 
 
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.Level;
 import com.revature.models.User;
 
 import com.revature.service.Authenticator;
