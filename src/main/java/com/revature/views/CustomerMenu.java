@@ -1,17 +1,15 @@
 package com.revature.views;
 
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 
 import com.revature.service.BankServiceImp;
 import com.revature.models.Account;
-import com.revature.models.Customer;
 import com.revature.models.User;
 import com.revature.repo.AccountDao;
-import com.revature.service.Auditor;
+
 
 public class CustomerMenu implements Menu {
 

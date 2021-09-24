@@ -2,11 +2,10 @@ package com.revature.service;
 
 
 
-import java.util.ArrayList;
+
 import java.util.List;
 
 import com.revature.models.Account;
-import com.revature.models.User;
 import com.revature.repo.AccountDao;
 import com.revature.repo.UserDao;
 
@@ -68,9 +67,6 @@ public class BankServiceImp {
 	//	goodOps = a.RequestTransfer(from, to ,amount);
 		
 		
-		
-		
-		
 		return goodOps;
 				
 				
@@ -84,11 +80,17 @@ public class BankServiceImp {
 	}
 
 	public List<Account> viewAllAccounts() {
-		return aDao.selectAllAccounts();
+		AccountDao ad = new AccountDao();
+		
+		List<Account> dossier = ad.selectAllAccounts();
+		
+		return dossier;
 	}
 	
 	public List<Account> viewAccounts(int id) {
+		
 		AccountDao a = new AccountDao();
+		
 		List<Account> list = a.selectAccounts(id);
 	
 		

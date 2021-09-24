@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.revature.models.Account;
-import com.revature.models.User;
+
 import com.revature.utilities.ConnectionDispatch;
 
 public class AccountDao implements BankDAO {
@@ -33,7 +33,7 @@ public class AccountDao implements BankDAO {
 		
 		Account account = new Account();
 		
-		String sql = "SELECT * FROM accounts_table WHERE fk_owner_id = ?";
+		String sql = "SELECT * FROM accounts_table WHERE fkey_owner_id = ?";
 		
 		PreparedStatement ps;
 		
@@ -132,11 +132,11 @@ public class AccountDao implements BankDAO {
 								(rs.getDouble("balance"))
 						
 						));
+				conn.close();
 			}
 		}catch (SQLException e) {
 			
 		}
-		
 		
 		return accounts;
 	}
@@ -188,7 +188,6 @@ public class AccountDao implements BankDAO {
 
 	@Override
 	public double acquireBalance(int id) {
-		boolean goodOps = false;
 		
 		PreparedStatement ps;
 		String sql = "SELECT balance FROM accounts_table WHERE fkey_owner_id = ?";

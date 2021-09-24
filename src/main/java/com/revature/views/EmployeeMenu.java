@@ -1,7 +1,10 @@
 package com.revature.views;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
+import com.revature.models.Account;
 import com.revature.models.User;
 import com.revature.service.BankServiceImp;
  
@@ -11,6 +14,7 @@ public class EmployeeMenu implements Menu {
 	
 	BankServiceImp service = new BankServiceImp();
 	User u;
+	List<Account> accounts = new ArrayList<>();
 	
 	public EmployeeMenu(User u) {
 		this.u = u;
@@ -19,37 +23,45 @@ public class EmployeeMenu implements Menu {
 	@Override
 	public void display() {
 		Scanner sc = new Scanner(System.in);
+		boolean working = true;
 		
-		System.out.println("Please select your option.");
-		System.out.println("1) View the customer's account");
-		System.out.println("2) Send a transfer.");
-		System.out.println("3) Approve a transfer.");
-		System.out.println("4) View the log.");
+		while(working) {
 		
+			System.out.println("Please select your option.");
+			System.out.println("1) View the customer's account");
+			System.out.println("2) Send a transfer.");
+			System.out.println("3) Approve or reject a transfer.");
+			System.out.println("4) View the log.");
+			System.out.println("5) Exit");
 		
+			String option = sc.nextLine();
+
+			switch(option) {
 		
-		String option = sc.nextLine();
+			case "1": 
 		
-		switch(option) {
+				accounts = service.viewAllAccounts();
+				System.out.println("Here are the accounts: \n" + accounts.toString());
 		
-		case "1": 
+				break;
+		
+			case "2":
+		
+				break;
 			
-			
-			break;
-			
-		case "2":
-			break;
+			case "3": 
 		
-		case "3": 
-			break;
+				break;
 			
-		case "4":
-			break;
-		default: 
+			case "4":
+				
+				break;
+			default: 
 			System.out.println("You need to pick a valid option.");
+		
+			}
+			
 		}
-		
-		
 		sc.close();
 	}
 
