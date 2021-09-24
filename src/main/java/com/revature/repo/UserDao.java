@@ -88,19 +88,27 @@ public class UserDao {
 	
 	// Deleting a user
 	public boolean deleteUser(String username) {
+		boolean goodOps = false;
+		PreparedStatement ps;
 		
-		return false;
+		String sql = "DELETE FROM accounts_table WHERE account_owner_name = ?";
+		
+		try {
+			Connection conn = dispatch.getConnection();
+			
+			ps = conn.prepareStatement(sql);
+			
+			if(ps.execute()) {
+				goodOps = true;
+			}
+			
+			
+		}catch (SQLException e){
+			
+		}
+		
+		return goodOps;
+		
 	}
 	
 }
-			
-			
-			
-			
-
-			
-			
-			
-				
-				
-

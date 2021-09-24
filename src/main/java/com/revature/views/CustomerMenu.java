@@ -12,7 +12,8 @@ import com.revature.repo.AccountDao;
 
 
 public class CustomerMenu implements Menu {
-
+	
+	
 	User user = new User();
 	private AccountDao aDao = new AccountDao();
 
@@ -94,6 +95,7 @@ public class CustomerMenu implements Menu {
 			break;
 			
 		case "3":
+			
 			List<Account> accs = service.viewAccounts(user.getId());
 			System.out.println("here are your accounts: " + accs.toString());
 			
@@ -104,7 +106,9 @@ public class CustomerMenu implements Menu {
 			double balance = 0.0;
 			
 			if (choice > -1 && choice < accs.size()) {
-				 balance = accs.get(choice).getBalance();
+				 
+				balance = accs.get(choice).getBalance();
+			
 			}else {
 				System.out.println("There is a problem with the choice");
 			}
@@ -116,10 +120,9 @@ public class CustomerMenu implements Menu {
 			double deposit = Double.parseDouble(pendDeposit);
 			
 			service.deposit(accs.get(choice).getId(), balance, deposit);
-			
-			
-			
+					
 			break;
+		
 		case "4":
 			List<Account> ac = service.viewAccounts(user.getId());
 			System.out.println("here are your accounts: " + ac.toString());

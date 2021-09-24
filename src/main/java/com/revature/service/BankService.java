@@ -19,4 +19,6 @@ public interface BankService {
 	
 	public boolean approveTransfer();
 	
+	public boolean rejectUser(String username);
+	
 }

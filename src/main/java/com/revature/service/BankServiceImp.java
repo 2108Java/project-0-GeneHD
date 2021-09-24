@@ -62,8 +62,10 @@ public class BankServiceImp {
 	}
 	
 	public boolean makeTransfer(String from, String to, double amount) {
-		AccountDao a = new AccountDao();
+//		AccountDao a = new AccountDao();
 		boolean goodOps = false;
+		
+		
 	//	goodOps = a.RequestTransfer(from, to ,amount);
 		
 		
@@ -95,6 +97,20 @@ public class BankServiceImp {
 	
 		
 		return list;
+	}
+
+	public boolean rejectUser(String realname) {
+		
+		UserDao user = new UserDao();
+		boolean goodOps = false;
+		
+		goodOps = user.deleteUser(realname);
+		if(goodOps) {
+			System.out.println("User " + realname + "has been deleted");
+		} else {
+			System.out.println("User has not been deleted.");
+		}
+		return goodOps;
 	}
 	
 	

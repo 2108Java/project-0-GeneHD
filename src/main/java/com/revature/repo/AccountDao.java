@@ -148,9 +148,27 @@ public class AccountDao implements BankDAO {
 	}
 
 	@Override
-	public void deleteAccount(String owner) {
-		// TODO Auto-generated method stub
+	public boolean deleteAccount(String owner) {
+		boolean goodOps = false;
+		PreparedStatement ps;
 		
+		String sql = "DELETE FROM accounts_table WHERE account_owner_name = ?";
+		
+		try {
+			Connection conn = dispatch.getConnection();
+			
+			ps = conn.prepareStatement(sql);
+			
+			if(ps.execute()) {
+				goodOps = true;
+			}
+			
+			
+		}catch (SQLException e){
+			
+		}
+		
+		return goodOps;
 	}
 
 	@Override
@@ -171,19 +189,42 @@ public class AccountDao implements BankDAO {
 		
 		ps.execute();
 		
+		conn.close();
+		
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		goodOps = true;
+		
+		
+		
 		return goodOps;
 		
 	}
 
 	@Override
-	public boolean approveAccount(String owner) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean approveAccount(String owner, int id) {
+		boolean goodOps = false;
+		PreparedStatement ps;
+		
+		String sql = "UPDATE accounts_table SET (fkey_owner_id, account_owner_name) to (?, ?)";
+		
+		Connection conn;
+		try {
+			conn = dispatch.getConnection();
+
+			ps = conn.prepareStatement(sql);
+			
+			ps.setInt(1, id);
+			ps.setString(2, owner);
+		
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+			
+		return goodOps;
 	}
 
 	@Override
@@ -238,8 +279,10 @@ public class AccountDao implements BankDAO {
 
 	@Override
 	public List<Account> selectAccountByUsername(String owner) {
+		
 		List<Account> accounts = new ArrayList<>();
 		PreparedStatement ps; 
+		
 		String sql = "SELECT * FROM accounts_table WHERE ";
 		try {
 				
